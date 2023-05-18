@@ -2,6 +2,20 @@
 
 include 'data.php';
 
+$filteredHotels = $hotels;
+
+// var_dump($_POST);
+
+if(isset($_POST['parking'])){
+  $filteredHotels = [];
+  foreach($hotels as $hotel){
+    if($hotel['parking']){
+      $filteredHotels[] = $hotel;
+    }
+  }
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,6 +42,21 @@ include 'data.php';
   </ul> -->
 
   <div class="container py-5">
+
+  <form action="index.php" method="POST">
+    <div class="row mb-5">
+      <div class="col-3">
+        <select class="form-select" name="parking" aria-label="Default select example"> 
+          <option value="" selected disabled="disabled">Senza parcheggio</option>
+          <option value="1">Con parcheggio</option>
+        </select>
+      </div>
+      <div class="col">
+        <button type="submit" class="btn btn-primary me-3">Invia</button>
+      </div>
+
+    </div>
+  </form>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -39,7 +68,7 @@ include 'data.php';
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($hotels as $hotel) : ?>
+        <?php foreach ($filteredHotels as $hotel) : ?>
         <tr>
           <th scope="row"><?php echo $hotel['name'] ?></th>
           <td><?php echo $hotel['description'] ?></td>
