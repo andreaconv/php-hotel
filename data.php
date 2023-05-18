@@ -7,7 +7,6 @@ $hotels = [
       'parking' => true,
       'vote' => 4,
       'distance_to_center' => 10.4,
-      
   ],
   [
       'name' => 'Hotel Futuro',
